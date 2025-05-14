@@ -1,21 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  FlatList,
+  Image,
+  TouchableWithoutFeedback,
+  Keyboard
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const RecipeListScreen = () => {
-  const [ingredient, setIngredient] = useState(''); // User input for individual ingredient
-  const [ingredients, setIngredients] = useState([]); // List of ingredients entered by the user
-  const [recipes, setRecipes] = useState([]); // Recipes to display
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(''); // Error state for invalid ingredients
-  const navigation = useNavigation();
+// ORİJİNAL HALİ:
+// const RecipeListScreen = () => {
 
-  // Validate ingredient (check if it exists in the valid list)
+// GÜNCELLENMİŞ HALİ:
+const RecipeListScreen = ({ navigation, userEmail }) => {
+  const [ingredient, setIngredient] = useState('');
+  const [ingredients, setIngredients] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
   const validateIngredient = async (ingredient) => {
     try {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?i=list`);
       const data = await response.json();
-      const validIngredients = data.meals.map((meal) => meal.strIngredient.toLowerCase()); // List of valid ingredients in lowercase
+      const validIngredients = data.meals.map((meal) => meal.strIngredient.toLowerCase());
       return validIngredients.includes(ingredient.toLowerCase());
     } catch (error) {
       console.error('Error validating ingredient:', error);
@@ -23,14 +35,12 @@ const RecipeListScreen = () => {
     }
   };
 
-  // Add ingredient to the list
   const handleAddIngredient = async () => {
     if (ingredient.trim() === '') {
       setError('Please enter a valid ingredient!');
       return;
     }
 
-    // Validate ingredient (ignore case sensitivity)
     const isValid = await validateIngredient(ingredient);
 
     if (isValid) {
@@ -42,19 +52,16 @@ const RecipeListScreen = () => {
     }
   };
 
-  // Remove ingredient from the list
   const handleRemoveIngredient = (ingredientToRemove) => {
     const updatedIngredients = ingredients.filter((ingredient) => ingredient !== ingredientToRemove);
     setIngredients(updatedIngredients);
   };
 
-  // Fetch recipes based on the ingredients entered by the user
   useEffect(() => {
     if (ingredients.length > 0) {
       setLoading(true);
       const fetchRecipes = async () => {
         try {
-          // Fetch recipes for each ingredient separately
           const allRecipes = [];
           for (let i = 0; i < ingredients.length; i++) {
             const ingredient = ingredients[i];
@@ -67,7 +74,6 @@ const RecipeListScreen = () => {
             }
           }
 
-          // Remove duplicates based on recipe ID
           const uniqueRecipes = Array.from(
             new Map(allRecipes.map((item) => [item.idMeal, item])).values()
           );
@@ -98,26 +104,29 @@ const RecipeListScreen = () => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
-        <Text style={styles.title}>Recipe Search</Text>
+        {/* ORİJİNAL HALİ */}
+        {/* <Text style={styles.title}>Recipe Search</Text> */}
 
-        {/* Ingredient Input */}
+        {/* GÜNCELLENMİŞ HALİ */}
+        <Text style={styles.title}>
+          Recipe Search {userEmail ? `- ${userEmail}` : ''}
+        </Text>
+
         <TextInput
           style={styles.input}
           placeholder="Enter an ingredient"
           value={ingredient}
           onChangeText={setIngredient}
-          onSubmitEditing={handleAddIngredient} // Handles Enter key press
-          returnKeyType="done" // Optional: Change "Enter" key to "Done"
+          onSubmitEditing={handleAddIngredient}
+          returnKeyType="done"
           keyboardType="default"
         />
         <TouchableOpacity style={styles.addButton} onPress={handleAddIngredient}>
           <Text style={styles.addButtonText}>Add Ingredient</Text>
         </TouchableOpacity>
 
-        {/* Error Message */}
         {error && <Text style={styles.errorText}>{error}</Text>}
 
-        {/* Display Added Ingredients */}
         <View style={styles.ingredientListContainer}>
           {ingredients.map((item, index) => (
             <TouchableOpacity
@@ -130,14 +139,12 @@ const RecipeListScreen = () => {
           ))}
         </View>
 
-        {/* Dynamic Margin Adjustment Based on Ingredients */}
         {ingredients.length > 0 && (
           <Text style={styles.recipeCount}>
             {recipes.length} {recipes.length === 1 ? 'recipe' : 'recipes'} found
           </Text>
         )}
 
-        {/* Recipes List */}
         {loading ? (
           <Text style={styles.loadingText}>Loading...</Text>
         ) : (

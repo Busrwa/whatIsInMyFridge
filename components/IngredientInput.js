@@ -12,6 +12,8 @@ export default function IngredientInput({ onAddIngredient }) {
     }
   };
 
+
+//Oluşturma karşılanıyor. post
   return (
     <View style={styles.inputContainer}>
       <TextInput
