@@ -7,6 +7,7 @@ import {
   updatePassword,
   deleteUser,
 } from 'firebase/auth'; // Şifre ve hesap silme işlemleri
+//@Author: Busra Yacioglu
 
 const ProfileUpdate = ({ navigation }) => { // 🔁 navigation prop'u eklendi
   const [currentPassword, setCurrentPassword] = useState('');

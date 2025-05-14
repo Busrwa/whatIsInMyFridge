@@ -12,10 +12,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-// ORİJİNAL HALİ:
-// const RecipeListScreen = () => {
-
-// GÜNCELLENMİŞ HALİ:
+//@Author: Busra Yacioglu
 const RecipeListScreen = ({ navigation, userEmail }) => {
   const [ingredient, setIngredient] = useState('');
   const [ingredients, setIngredients] = useState([]);

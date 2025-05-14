@@ -9,6 +9,7 @@ import RecipeListScreen from './screens/RecipeListScreen';
 import RecipeDetailScreen from './screens/RecipeDetailScreen';
 import AuthScreen from './screens/AuthScreen';
 import ProfileUpdate from './screens/ProfileUpdate';
+//@Author: Busra Yacioglu
 
 const Stack = createStackNavigator();
 

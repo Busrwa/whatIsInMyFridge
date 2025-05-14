@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
 import { Feather } from '@expo/vector-icons';
-
+//@Author: Busra Yacioglu
 const HomePage = () => {
   const navigation = useNavigation();
 

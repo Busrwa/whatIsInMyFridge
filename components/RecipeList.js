@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, FlatList, Text, StyleSheet, Image } from 'react-native';
+//@Author: Busra Yacioglu
 
 const RecipeList = ({ recipes }) => {
   return (

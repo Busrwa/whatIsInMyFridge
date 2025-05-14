@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app';  // firebase/app'i import ediyoruz
 import { getAuth } from 'firebase/auth';  // firebase/auth'i import ediyoruz
 import { getAnalytics } from 'firebase/analytics'; // firebase/analytics import ediyoruz
+//@Author: Busra Yacioglu
 
 const firebaseConfig = {
   apiKey: "...",

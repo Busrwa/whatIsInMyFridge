@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, Image } from 'react-native';
 import { auth } from '../firebase'; // Firebase yapılandırman doğru import edildiğinden emin ol
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+//@Author: Busra Yacioglu
 
 const AuthScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');

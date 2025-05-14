@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
+//@Author: Busra Yacioglu
 
 export default function IngredientInput({ onAddIngredient }) {
   const [text, setText] = useState('');

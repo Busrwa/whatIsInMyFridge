@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-//PROP
+//@Author: Busra Yacioglu
 
 const RecipeDetailScreen = ({ route }) => {
   const { recipeId } = route.params;
