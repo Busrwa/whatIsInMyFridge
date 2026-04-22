@@ -17,7 +17,9 @@ recipes based on ingredients they already have at home.
 - React Navigation
 
 ## 🚀 Getting Started
+```bash
 git clone https://github.com/Busrwa/whatIsInMyFridge.git
 cd whatIsInMyFridge
 npm install
 npx expo start
+```
